@@ -15,7 +15,7 @@
 }
 
 .book {
-  width: 400px;
+  width: 428px;
   /* margin-bottom: 20px; */
   margin-top: 20px;
   text-align: center;
@@ -23,11 +23,11 @@
   margin-bottom: 10px;
   color: darkblue;
   text-shadow: -2px -2px 5px #fff, 3px 3px 5px rgba(0, 0, 0, 0.1);
-  box-shadow: -2px -2px 5px #fff, 3px 3px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: -2px -2px 5px #3434eb, 3px 3px 5px rgba(0, 0, 0, 0.1);
 }
 
 .cont {
-  width: 400px;
+  width: 428px;
   text-align: center;
   font-size: 32px;
   margin-top: 20px;
