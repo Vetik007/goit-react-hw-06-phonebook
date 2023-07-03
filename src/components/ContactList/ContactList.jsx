@@ -71,10 +71,11 @@ const ContactList = () => {
         {filteredContacts.map(({ id, name, number }) => {
           return (
             <li className={css.item} key={id}>
-              <p className={css.text}>{{ name } + ' : ' + { number }}</p>
-              {/* <Name>{name}</Name>
-              <Number>{number}</Number> */}
+              {/* <p className={css.text}>{{ name } + ' : ' + { number }}</p> */}
+              <p className={css.text}>{name}</p>
+              <p className={css.text}>{number}</p>
               <button
+                className={`${css.custom} ${css.btn9}`}
                 type="button"
                 name="delete"
                 onClick={() => dispatch(deleteContact(id))}
