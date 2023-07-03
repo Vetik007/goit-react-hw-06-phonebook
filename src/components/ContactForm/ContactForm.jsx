@@ -9,10 +9,7 @@ import { addContact } from 'redux/contactsSlice';
 import { getContacts } from 'redux/selectors';
 import css from './ContactForm.module.css';
 
-const ContactForm = ({ onSubmit }) => {
-  // const [name, setName] = useState('');
-  // const [number, setNumber] = useState('');
-
+const ContactForm = () => {
   const dispatch = useDispatch(); // функція, яка дозволяє відправити екшн
   const contacts = useSelector(getContacts); // отримуємо всі контакти зі стейта
 
