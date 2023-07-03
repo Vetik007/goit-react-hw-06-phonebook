@@ -22,4 +22,8 @@
   box-shadow: inset -2px -2px 8px #3434eb, inset 3px 5px 5px rgba(0, 0, 0, 0.1);
   background-color: transparent;
   border: none;
+
+  font-size: 20px;
+  color: darkblue;
+  font-weight: bolder;
 }
