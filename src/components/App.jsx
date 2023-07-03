@@ -8,11 +8,11 @@ import Filter from './Filter/Filter';
 import css from './App.module.css';
 
 const App = () => {
-  const [contacts, setContacts] = useState(
-    () => JSON.parse(localStorage.getItem('contacts')) || []
-  );
-  // const [contacts, setContacts] = useState(contactsData);
-  const [filter, setFilter] = useState('');
+  // const [contacts, setContacts] = useState(
+  //   () => JSON.parse(localStorage.getItem('contacts')) || []
+  // );
+  // // const [contacts, setContacts] = useState(contactsData);
+  // const [filter, setFilter] = useState('');
 
   // зчитуємо дані з localStorage
   // у масиві залежності вказуємо порожній масив [], що означає, що ефект буде виконано лише один раз - після першого рендерингу компонента.
@@ -26,70 +26,157 @@ const App = () => {
 
   // збереження даних у localStorage. В масив залежностей useEffect передаємо поточний стан елементу contacts який зберігається у хуку useState.
   // useEffect викликається при кожнній зміні стану contacts результатом чого є збереження оновленного масиву
-  useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
 
-  // Додаємо новий контакт до списку контактів
-  const addContact = contact => {
-    const isInContacts = contacts.some(
-      ({ name }) => name.toLowerCase() === contact.name.toLowerCase()
-    );
+  // useEffect(() => {
+  //   localStorage.setItem('contacts', JSON.stringify(contacts));
+  // }, [contacts]);
 
-    if (isInContacts) {
-      alert(`${contact.name} is already in contacts`);
-      return;
-    }
+  // // Додаємо новий контакт до списку контактів
+  // const addContact = contact => {
+  //   const isInContacts = contacts.some(
+  //     ({ name }) => name.toLowerCase() === contact.name.toLowerCase()
+  //   );
 
-    setContacts(prevContacts => [
-      { id: nanoid(), ...contact },
-      ...prevContacts,
-    ]);
-  };
+  //   if (isInContacts) {
+  //     alert(`${contact.name} is already in contacts`);
+  //     return;
+  //   }
 
-  // оновлюємо значення стану filter
-  const changeFilter = event => {
-    setFilter(event.target.value);
-  };
+  //   setContacts(prevContacts => [
+  //     { id: nanoid(), ...contact },
+  //     ...prevContacts,
+  //   ]);
+  // };
 
-  //отримуємо новий масив з контактів які відповідають фільтру
-  const getVisibleContacts = () => {
-    const normalizedFilter = filter.toLowerCase();
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(normalizedFilter)
-    );
-  };
+  // // оновлюємо значення стану filter
+  // const changeFilter = event => {
+  //   setFilter(event.target.value);
+  // };
 
-  // видалення контакту з масиву
-  const removeContact = contactId => {
-    setContacts(prevContacts =>
-      prevContacts.filter(({ id }) => id !== contactId)
-    );
-  };
+  // //отримуємо новий масив з контактів які відповідають фільтру
+  // const getVisibleContacts = () => {
+  //   const normalizedFilter = filter.toLowerCase();
+  //   return contacts.filter(contact =>
+  //     contact.name.toLowerCase().includes(normalizedFilter)
+  //   );
+  // };
 
-  const visibleContacts = getVisibleContacts();
+  // // видалення контакту з масиву
+  // const removeContact = contactId => {
+  //   setContacts(prevContacts =>
+  //     prevContacts.filter(({ id }) => id !== contactId)
+  //   );
+  // };
+
+  // const visibleContacts = getVisibleContacts();
 
   return (
     <div className={css.wrapper}>
       <h1 className={css.book}>Phonebook</h1>
-      <ContactForm onSubmit={addContact} />
+      <ContactForm />
       <h2 className={css.cont}>Contacts</h2>
-      {contacts.length > 0 ? (
-        <Filter value={filter} onChangeFilter={changeFilter} />
-      ) : (
-        <p>There are no contacts in the phone book!</p>
-      )}
-      {contacts.length > 0 && (
-        <ContactList
-          contacts={visibleContacts}
-          onRemoveContact={removeContact}
-        />
-      )}
+      <Filter />
+      <ContactList />
     </div>
   );
 };
 
 export default App;
+
+// =============================================================
+// import React, { useState, useEffect } from 'react';
+// import { nanoid } from 'nanoid';
+
+// import ContactForm from './ContactForm/ContactForm';
+// import ContactList from './ContactList/ContactList';
+// import Filter from './Filter/Filter';
+// // import contactsData from './data/contactsData.json';
+// import css from './App.module.css';
+
+// const App = () => {
+//   const [contacts, setContacts] = useState(
+//     () => JSON.parse(localStorage.getItem('contacts')) || []
+//   );
+//   // const [contacts, setContacts] = useState(contactsData);
+//   const [filter, setFilter] = useState('');
+
+//   // зчитуємо дані з localStorage
+//   // у масиві залежності вказуємо порожній масив [], що означає, що ефект буде виконано лише один раз - після першого рендерингу компонента.
+//   // useEffect(() => {
+//   //   const storedContacts = localStorage.getItem('contacts');
+//   //   // Робимо перевірку на наявнясть у localStorage даних. Якщо так оновлюємо стан contacts у useState
+//   //   if (storedContacts) {
+//   //     setContacts(JSON.parse(storedContacts));
+//   //   }
+//   // }, []);
+
+//   // збереження даних у localStorage. В масив залежностей useEffect передаємо поточний стан елементу contacts який зберігається у хуку useState.
+//   // useEffect викликається при кожнній зміні стану contacts результатом чого є збереження оновленного масиву
+
+//   useEffect(() => {
+//     localStorage.setItem('contacts', JSON.stringify(contacts));
+//   }, [contacts]);
+
+//   // Додаємо новий контакт до списку контактів
+//   const addContact = contact => {
+//     const isInContacts = contacts.some(
+//       ({ name }) => name.toLowerCase() === contact.name.toLowerCase()
+//     );
+
+//     if (isInContacts) {
+//       alert(`${contact.name} is already in contacts`);
+//       return;
+//     }
+
+//     setContacts(prevContacts => [
+//       { id: nanoid(), ...contact },
+//       ...prevContacts,
+//     ]);
+//   };
+
+//   // оновлюємо значення стану filter
+//   const changeFilter = event => {
+//     setFilter(event.target.value);
+//   };
+
+//   //отримуємо новий масив з контактів які відповідають фільтру
+//   const getVisibleContacts = () => {
+//     const normalizedFilter = filter.toLowerCase();
+//     return contacts.filter(contact =>
+//       contact.name.toLowerCase().includes(normalizedFilter)
+//     );
+//   };
+
+//   // видалення контакту з масиву
+//   const removeContact = contactId => {
+//     setContacts(prevContacts =>
+//       prevContacts.filter(({ id }) => id !== contactId)
+//     );
+//   };
+
+//   const visibleContacts = getVisibleContacts();
+
+//   return (
+//     <div className={css.wrapper}>
+//       <h1 className={css.book}>Phonebook</h1>
+//       <ContactForm onSubmit={addContact} />
+//       <h2 className={css.cont}>Contacts</h2>
+//       {contacts.length > 0 ? (
+//         <Filter value={filter} onChangeFilter={changeFilter} />
+//       ) : (
+//         <p>There are no contacts in the phone book!</p>
+//       )}
+//       {contacts.length > 0 && (
+//         <ContactList
+//           contacts={visibleContacts}
+//           onRemoveContact={removeContact}
+//         />
+//       )}
+//     </div>
+//   );
+// };
+
+// export default App;
 
 //! =========================================================
 // !====================без хуков============================
